@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      PORT: "8080"
+      ALLOWED_ORIGIN: "" # frontend is same-origin via nginx; CORS not needed
+    expose:
+      - "8080"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "3001:80"
